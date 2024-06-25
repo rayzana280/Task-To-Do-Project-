@@ -1,0 +1,34 @@
+[
+    {
+        "prompt": "Visit an art gallery in Hell's Kitchen",
+        "category": "Art"
+    },
+    {
+        "prompt": "Ride a CitiBike through the Brooklyn Bridge",
+        "category": "Sport"
+    },
+    {
+        "prompt": "Try something new at Smorgasburg",
+        "category": "Food"
+    },
+    {
+        "prompt": "Make and send a Spotify playlist for a friend",
+        "category": "Leisure"
+    },
+    {
+        "prompt": "Join a clay pottery class for the day",
+        "category": "Art"
+    },
+    {
+        "prompt": "Play some indoor beach volleyball at QBK Sports in Queens",
+        "category": "Sport"
+    },
+    {
+        "prompt": "Take a pasta making class",
+        "category": "Food"
+    },
+    {
+        "prompt": "Read a book at Central Park",
+        "category": "Leisure"
+    }
+]

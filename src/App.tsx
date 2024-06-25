@@ -6,6 +6,11 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
+  //TODO Figure out how to fetch json data
+  // fetch("./src/users.json")
+  //   .then(resp => console.log(resp))
+  // ;
+
   return (
     <>
       <div>
