@@ -1,4 +1,4 @@
-[
+{"tasks":[
     {
         "prompt": "Visit an art gallery in Hell's Kitchen",
         "category": "Art"
@@ -32,3 +32,4 @@
         "category": "Leisure"
     }
 ]
+}
