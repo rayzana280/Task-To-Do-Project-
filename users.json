@@ -1,4 +1,4 @@
-[
+{"users":[
     {
         "username": "duhitz_M",
         "password": "thisismypass"
@@ -11,4 +11,4 @@
         "username": "dfener_raul",
         "password": "createyourpass"
     }
-]
+]}
