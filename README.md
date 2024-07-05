@@ -1,7 +1,3 @@
-Thanks for providing the repository link. I'll update the README file accordingly:
-
----
-
 # Adventure Journal
 
 Welcome to Adventure Journal! This project is designed to inspire users to step out of their comfort zones and try new experiences. Users receive random tasks (like making a friend at an art gallery or trying a new restaurant) and can upload a picture and reflect on their experience.
@@ -51,12 +47,8 @@ Once the server is running, you can access Adventure Journal at `http://localhos
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE.txt) file for details.
 
 ## Contact
 
 For questions or suggestions, please reach out to us through our GitHub profiles or create an issue in the repository.
-
----
-
-You can copy this README file content and add it to your repository. If you have any more details or specific instructions to include, let me know, and I can update it accordingly.
