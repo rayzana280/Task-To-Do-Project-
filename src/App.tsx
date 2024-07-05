@@ -1,29 +1,54 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
+
+interface TASK {
+  prompt: string,
+  category: string
+}
+
+interface DATA {
+  tasks: Array<TASK>
+}
+
 function App() {
-  const [count, setCount] = useState(0)
-  const [tasks, setTasks] = useState([])
 
-  //TODO Figure out how to fetch json data
-  // fetch("./src/users.json")
-  //   .then(resp => console.log(resp))
-  // ;
-  useEffect(()=>{
-  fetch("http://localhost:3000/tasks")
-  .then(response => response.json())
-  .then(data => setTasks(data))
-  }, [])
+  const [tasks, setTasks] = useState<TASK[]>([])
 
-  console.log(tasks)
+  useEffect(
+    () => {
+      getTasks()
+    },
+    [])
+
+  const getTasks = async () => {
+    try {
+      let resp = await fetch("../tasks.json");
+      let data: DATA = await resp.json();
+      data && setTasks(data.tasks);
+
+    } catch {
+      console.log('Failed Load');
+    }
+  }
+
   return (
     <>
-      <h1>Task To Do</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
+      <header>
+        <h1>Adventure App</h1>
+        <h3>Tasks to display:</h3>
+      </header>
+      <main>
+        {
+          tasks.map(
+            (task, index) => (
+              <div key={index}>
+                <p><b>{task.category}:</b> {task.prompt}</p>
+              </div>
+            )
+          )
+        }
+      </main>
     </>
   )
 }
