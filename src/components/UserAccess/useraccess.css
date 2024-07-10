@@ -49,3 +49,14 @@ form {
     margin: 20px 0 15px 0;
     padding: 4px 6px;
 }
+
+th,
+td {
+    border: 1px solid;
+    padding: 5px;
+}
+
+i {
+    font-size: medium;
+    color: crimson;
+}

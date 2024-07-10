@@ -1,8 +1,9 @@
 import "../UserAccess/useraccess.css"
 
-import { USER, DATA } from "../../util/types";
+import { USER } from "../../util/types";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { usersAPI } from "../../restAPIs/users";
 
 function LogInPage() {
 
@@ -14,20 +15,12 @@ function LogInPage() {
 
     useEffect(
         () => {
-            getUsers()
-        },
-        [])
+            const resp = usersAPI.get();
+            resp.then((data: USER[]) => {
+                setUsers(data)
+            });
 
-    const getUsers = async () => {
-        try {
-            const resp = await fetch("../../users.json");
-            const data: DATA = await resp.json();
-            data && setUsers(data.users);
-        }
-        catch {
-            console.log('Failed to load API')
-        }
-    }
+        }, [])
 
     const handleLogIn = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault()
@@ -39,18 +32,15 @@ function LogInPage() {
 
         if (!isNotEmpty(username) || !isNotEmpty(password)) {
             console.log('Username or password cannot be empty or contain empty spaces.');
-        }
+        };
 
         //iterate through users and see if both username and password match
         users.map((user) => {
             if (username === user.username && password === user.password) {
                 console.log('Logged In');
-                //TODO:Write a function to handle accurate user login.
-            } else {
-                console.log('No match');
+                //TODO:Where should the page lead when logged in.
             }
-        })
-
+        });
 
         setUsername('');
         setPassword('');
@@ -95,18 +85,6 @@ function LogInPage() {
                 >
                     Create new account</button>
             </form>
-
-            {/* <>
-                {
-                    users.map(
-                        (user, index) => (
-                            <div key={index}>
-                                <p><b>{user.username}:</b> {user.password}</p>
-                            </div>
-                        )
-                    )
-                }
-            </> */}
         </main>
     )
 

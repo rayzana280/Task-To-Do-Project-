@@ -1,10 +1,29 @@
+import { useNavigate } from "react-router-dom";
+import { usersAPI } from "../../restAPIs/users";
+import { USER } from "../../util/types";
 import "../UserAccess/useraccess.css"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function Reset() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+
+    const [users, setUsers] = useState<USER[]>([]);
+
+    const navigate = useNavigate();
+
+    useEffect(
+        () => {
+            const resp = usersAPI.get();
+            resp.then((data: USER[]) => {
+                setUsers(data)
+            });
+
+        }, []);
+
+
 
     const updatePassword = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault()
@@ -14,12 +33,31 @@ function Reset() {
                   */
         const isNotEmpty = (str: string) => /^[^\s]+(\s+[^\s]+)*$/.test(str);
 
-        if (!isNotEmpty(username) || !isNotEmpty(password)) {
-            console.log('Username or password cannot be empty or contain empty spaces.');
+        if (!isNotEmpty(username)) {
+            console.log('Username cannot be empty or contain empty spaces.');
             return;
         }
 
-        //TODO: Work on a function to update an entry on the JSON file.
+        //TODO: if successful change page should route to log in page.
+
+        users.map((user) => {
+            if (user.username === username) {
+                console.log('Password changed!');
+                //TODO:Need to change the password
+
+                user.id && usersAPI.put(user.id, {
+                    username: user.username,
+                    password: password
+                })
+
+                navigate('/login')
+            }
+        })
+
+
+
+        //TODO: display a message saying the below if no the username input does not match any of the current users.
+        console.log('No user found.');
 
         //UI cleanup
         setUsername('');

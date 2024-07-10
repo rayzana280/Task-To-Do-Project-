@@ -1,7 +1,8 @@
 import "../UserAccess/useraccess.css"
 import { useState } from "react"
 
-import "../../../users.json"
+import { usersAPI } from "../../restAPIs/users";
+
 
 function SignUpPage() {
 
@@ -20,23 +21,15 @@ function SignUpPage() {
             console.log('Username or password cannot be empty or contain empty spaces.');
         }
 
-        post();
+        usersAPI.post({
+            username: username,
+            password: password
+        })
 
         //UI cleanup
         setUsername('');
         setPassword('');
     }
-
-
-    const post = async () => {
-        try {
-            //TODO: Need to work on a function to post to the JSON file
-        }
-        catch {
-            console.log('Failed to post new user');
-        }
-    }
-
 
     return (
         <main className="user-pages">
