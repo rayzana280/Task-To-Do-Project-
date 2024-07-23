@@ -1,36 +1,14 @@
-import { useState, useEffect } from 'react'
 import './App.css'
+import { Route, Routes } from 'react-router-dom';
 
-
-interface TASK {
-  prompt: string,
-  category: string
-}
-
-interface DATA {
-  tasks: Array<TASK>
-}
+import Tasks from './components/tasks';
+import LogInPage from './components/UserAccess/login'
+import SignUpPage from './components/UserAccess/signup'
+import Reset from './components/UserAccess/reset';
+import UserList from './components/UserAccess/userslist'
 
 function App() {
 
-  const [tasks, setTasks] = useState<TASK[]>([])
-
-  useEffect(
-    () => {
-      getTasks()
-    },
-    [])
-
-  const getTasks = async () => {
-    try {
-      let resp = await fetch("../tasks.json");
-      let data: DATA = await resp.json();
-      data && setTasks(data.tasks);
-
-    } catch {
-      console.log('Failed Load');
-    }
-  }
 
   return (
     <>
@@ -38,17 +16,15 @@ function App() {
         <h1>Adventure App</h1>
         <h3>Tasks to display:</h3>
       </header>
-      <main>
-        {
-          tasks.map(
-            (task, index) => (
-              <div key={index}>
-                <p><b>{task.category}:</b> {task.prompt}</p>
-              </div>
-            )
-          )
-        }
-      </main>
+      <nav>
+        <Routes>
+          <Route path='/' element={<Tasks />} />
+          <Route path='/Users' element={<UserList />} />
+          <Route path='/LogIn' element={<LogInPage />} />
+          <Route path='/SignUp' element={<SignUpPage />} />
+          <Route path='/Reset' element={<Reset />} />
+        </Routes>
+      </nav>
     </>
   )
 }
